@@ -29,6 +29,7 @@ var debug = require('debug')('morgan')
 var deprecate = require('depd')('morgan')
 var onFinished = require('on-finished')
 var onHeaders = require('on-headers')
+var dateFormat = require('dateformat')
 
 /**
  * Array of CLF month names.
@@ -177,6 +178,12 @@ morgan.format('short', ':remote-addr :remote-user :method :url HTTP/:http-versio
 morgan.format('tiny', ':method :url :status :res[content-length] - :response-time ms')
 
 /**
+ * Custom format.
+ */
+
+morgan.format('custom', ':date[cdf] --- INFO : :method | :url | :status | :response-time | :body')
+
+/**
  * dev (colored)
  */
 
@@ -222,6 +229,14 @@ morgan.token('method', function getMethodToken(req) {
 });
 
 /**
+ * request body 
+ */
+
+morgan.token('body', function getBodyToken(req) {
+  return req.body;
+});
+
+/**
  * response time in milliseconds
  */
 
@@ -249,6 +264,8 @@ morgan.token('date', function getDateToken(req, res, format) {
   switch (format || 'web') {
     case 'clf':
       return clfdate(date)
+    case 'cdf':
+      return cdf(date)
     case 'iso':
       return date.toISOString()
     case 'web':
@@ -360,6 +377,14 @@ function clfdate(dateTime) {
   return pad2(date) + '/' + month + '/' + year
     + ':' + pad2(hour) + ':' + pad2(mins) + ':' + pad2(secs)
     + ' +0000'
+}
+
+/**
+ * Custom date format
+ */
+
+function cdf(dateTime) {
+  return dateFormat(dateTime, 'yyyy-mm-dd hh:MM:ss')
 }
 
 /**
