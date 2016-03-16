@@ -233,7 +233,7 @@ morgan.token('method', function getMethodToken(req) {
  */
 
 morgan.token('body', function getBodyToken(req) {
-  return req.body;
+  return JSON.stringify(req.body);
 });
 
 /**
