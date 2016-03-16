@@ -1,7 +1,7 @@
 {
   "name": "@zanroo/morgan",
   "description": "expressjs/morgan fored, HTTP request logger middleware for node.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "contributors": [
     "Douglas Christopher Wilson <doug@somethingdoug.com>",
     "Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)"

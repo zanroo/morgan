@@ -384,7 +384,7 @@ function clfdate(dateTime) {
  */
 
 function cdf(dateTime) {
-  return dateFormat(dateTime, 'yyyy-mm-dd hh:MM:ss')
+  return dateFormat(dateTime, 'yyyy-mm-dd HH:MM:ss')
 }
 
 /**
